@@ -1,3 +1,5 @@
+import 'package:weather_app/utilities/constants.dart';
+
 class WeatherForecast {
   City? city;
   String? cod;
@@ -172,6 +174,10 @@ class WeatherList {
     data['pop'] = this.pop;
     data['rain'] = this.rain;
     return data;
+  }
+
+  String getIconUrl(){
+    return '${Constants.WEATHER_IMAGES_URL}${weather![0].icon}.png';
   }
 }
 
