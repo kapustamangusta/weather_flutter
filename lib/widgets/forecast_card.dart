@@ -8,7 +8,7 @@ Widget forecastCard(AsyncSnapshot snapshot, int index) {
       DateTime.fromMillisecondsSinceEpoch(forecastList![index].dt * 1000);
   var fullDate = Util.getFormattedDate(date);
   var dayOfWeek = fullDate.split(',')[0];
-  var tempMin = forecastList![index].temp.min.toStringAsFixed(0);
+  var tempMin = forecastList![index].temp.day.toStringAsFixed(0);
   var icon = forecastList![index].getIconUrl();
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
