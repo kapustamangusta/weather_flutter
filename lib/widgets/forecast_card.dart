@@ -8,7 +8,7 @@ Widget forecastCard(AsyncSnapshot snapshot, int index) {
       DateTime.fromMillisecondsSinceEpoch(forecastList![index].dt * 1000);
   var fullDate = Util.getFormattedDate(date);
   var dayOfWeek = fullDate.split(',')[0];
-  var tempMin = forecastList![index].temp.day.toStringAsFixed(0);
+  var temp = forecastList![index].temp.day.toStringAsFixed(0);
   var icon = forecastList![index].getIconUrl();
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +33,7 @@ Widget forecastCard(AsyncSnapshot snapshot, int index) {
                   Padding(
                     padding: EdgeInsets.all(8),
                     child: Text(
-                      '$tempMin °C',
+                      '$temp °C',
                       style: TextStyle(
                         fontSize: 30,
                         color: Colors.black87,

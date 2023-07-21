@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/weather_forecast_daily.dart';
+import '../utilities/translator.dart';
 import 'forecast_card.dart';
 
 class BottomListView extends StatelessWidget {
@@ -12,13 +13,23 @@ class BottomListView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(
-          '7-Day Weather Forecast'.toUpperCase(),
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black87,
-            fontWeight: FontWeight.bold,
-          ),
+        FutureBuilder<String>(
+          future: Translator.ToRus('7-Day Weather Forecast'),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text(
+                snapshot.data!.toUpperCase(),
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }
+            else{
+              return Text('');
+            }
+          },
         ),
         Container(
           height: 140,
@@ -26,12 +37,10 @@ class BottomListView extends StatelessWidget {
           child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => Container(
-                    width: MediaQuery.of(context).size.width / 2.7,
+                    width: MediaQuery.of(context).size.width / 2.5,
                     height: 200,
                     decoration: BoxDecoration(
-                        boxShadow: [
-                          
-                        ],
+                        boxShadow: [],
                         color: Colors.orange[100],
                         border: Border.all(
                           color: Colors.black87,

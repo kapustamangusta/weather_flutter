@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utilities/translator.dart';
+
 class CityScreen extends StatefulWidget {
   const CityScreen({super.key});
 
@@ -25,7 +27,7 @@ class _CityScreenState extends State<CityScreen> {
                       color: Colors.white,
                     ),
                     decoration: InputDecoration(
-                      hintText: 'Enter City Name',
+                      hintText: 'Введите название города',
                       hintStyle: TextStyle(color: Colors.white),
                       filled: true,
                       fillColor: Colors.black87,
@@ -47,13 +49,20 @@ class _CityScreenState extends State<CityScreen> {
               ),
               TextButton(
                 child: Text(
-                  "Get Weather",
+                  "Узнать погоду",
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.black87,
                   ),
                 ),
                 onPressed: (){
+                  cityName = cityName[0].toLowerCase()+cityName.substring(1).toLowerCase();
+                  FutureBuilder<String>(future: Translator.ToEn(cityName), builder: (context, snapshot){
+                    if(snapshot.hasData){
+                      cityName = snapshot.data!;
+                    }
+                     return Text('');
+                  });
                   Navigator.pop(context, cityName);
                 },
               ),

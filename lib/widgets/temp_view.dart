@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/utilities/translator.dart';
 
 import '../models/weather_forecast_daily.dart';
 
@@ -32,7 +33,18 @@ class TempView extends StatelessWidget {
                   color: Colors.black87,
                 ),
               ),
-              Text('$description', style: TextStyle(fontSize: 18, color: Colors.black87),),
+              FutureBuilder<String>(
+                future: Translator.ToRus(description),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    description = snapshot.data!;
+                  }
+                  return Text(
+                    '${description.toUpperCase()}',
+                    style: TextStyle(fontSize: 18, color: Colors.black87),
+                  );
+                },
+              ),
             ],
           ),
         ],
